@@ -8,7 +8,7 @@ import DecreaseStockForm from "./DecreaseStockForm";
 import CreateProductForm from "./CreateProductForm";
 import ProductsList from "./ProductsList";
 import ProductsShow from "./ProductShow";
-
+import axios from 'axios'
 import server from "./apis/server";
 
 class App extends Component {
@@ -18,10 +18,11 @@ class App extends Component {
   };
 
   getProducts = () => {
-    server
+    axios
       .get("/products")
-      .then((response) => {
-        this.setState({ products: response.data });
+      .then((res) => {
+        console.log(res);
+        this.setState({ products: res.data });
       })
       .catch((err) => {
         console.log(err);
@@ -29,7 +30,7 @@ class App extends Component {
   };
 
   getChanges = (id) => {
-    server
+    axios
       .get("/products/get/changes/" + id)
       .then((res) => {
         this.setState({ changes: res.data });
@@ -40,7 +41,7 @@ class App extends Component {
   };
 
   getProduct = (id) => {
-    server
+    axios
       .get("/products/" + id)
       .then((res) => {
         this.setState({ product: res.data });
@@ -57,7 +58,7 @@ class App extends Component {
   };
 
   deleteProduct = (id) =>{
-    server
+    axios
     .delete("/products/" + id)
     .then((res) => {
       this.setState({ products: res.data });

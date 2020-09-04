@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Form, Header, Segment } from "semantic-ui-react";
-
+import axios from 'axios';
 import server from "./apis/server";
 
 class CreateProductForm extends Component {
@@ -11,7 +11,7 @@ class CreateProductForm extends Component {
   onSubmit = () => {
     const { name } = this.state;
     const product = { name };
-    server
+    axios
       .post("/products", product)
       .then((res) => {
         this.props.getProducts();

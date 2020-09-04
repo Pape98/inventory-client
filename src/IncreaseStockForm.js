@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Form, Header, Segment } from "semantic-ui-react";
-
+import axios from 'axios'
 import server from "./apis/server";
 
 class IncreaseStockForm extends Component {
@@ -12,12 +12,12 @@ class IncreaseStockForm extends Component {
     const { name, quantity } = this.state;
     const product = { name, quantity };
 
-    server
+    axios
       .post("/products/increase", product)
       .then((res) => {
         this.props.getProducts();
         this.props.getProduct(res.data);
-        this.props.getChanges(res.data)
+        this.props.getChanges(res.data);
         this.setState({ name: "", quantity: 0 });
       })
       .catch((err) => {

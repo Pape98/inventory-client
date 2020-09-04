@@ -17,7 +17,7 @@ class ChangeItem extends Component {
     const fomatted_date = moment(change.date).format("dddd, MMMM Do YYYY");
     return (
       <Table.Row>
-        <Table.Cell positive>{fomatted_date}</Table.Cell>
+        <Table.Cell>{fomatted_date}</Table.Cell>
         <Table.Cell>{change.soldTo}</Table.Cell>
         {this.changeType()}
         <Table.Cell>{change.total}</Table.Cell>
